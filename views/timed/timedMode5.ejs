@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <script src="/javascripts/timedScript.js" defer></script>
+    <title>FasType</title>
+</head>
+<body>
+    <div class="timer" id="timer">0</div>
+    <div class="container">
+        <div class="quote-display" id="quoteDisplay"></div>
+        <textarea class="quote-input" id="quoteInput" autofocus></textarea>
+    </div>
+    <div class="startButton" id="startButton">
+        <button onclick="renderNewQuote()">Start</button>
+    </div>
+    <div class="analysis" id="analysis">
+        <h1>ANALysis</h1><br>
+        <h2>Total Words Typed: <span id="wordsTyped"></span></h2><br>
+        <h2>Total Time Taken: <span id="timeTaken">5</span> minute</h2><br>
+        <h2>Words Per Minute: <span id="WPM"></span></h2>
+    </div>
+</body>
+</html>
