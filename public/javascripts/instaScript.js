@@ -7,51 +7,40 @@ let wordsInQuoteArray
 let startTime;
 let start=0;
 let totalWordsTyped=0;
+let endTimer=0;
 let keystrokeErrors=0;
 let wordErrors=0;
 var errorMap = new Uint8Array(300);
 var wordErrorMap;
 
+function endTime(){
+    endTimer=1;
+    return;
+}
+
 quoteInputElement.addEventListener('input' , () =>{
     const arrayQuote = quoteDisplayElement.querySelectorAll('span');
     const arrayValue = quoteInputElement.value.split('');
     let correct = true;
-    var wordErrorIndex = 0;
     arrayQuote.forEach((characterSpan,index) =>{
         const character = arrayValue[index]
         if(character == null)
         {
             characterSpan.classList.remove('correct')
             characterSpan.classList.remove('incorrect')
-            correct = false
-            errorMap[index]=0;
+            correct = false;
         }
         else if(character === characterSpan.innerText)
         {
             characterSpan.classList.add('correct')
             characterSpan.classList.remove('incorrect')
-            if(character === ' ')
-            {
-                wordErrorIndex++;
-            }
-            errorMap[index]=0;
         }
         else if(character != characterSpan.innerText)
         {
             characterSpan.classList.remove('correct')
             characterSpan.classList.add('incorrect')
-            if(errorMap[index]===0)
-            {
-                errorMap[index]=1;
-                keystrokeErrors++;
-                // console.log(keystrokeErrors);
-            }
-            if(wordErrorMap[wordErrorIndex]===0)
-            {
-                wordErrorMap[wordErrorIndex]=1;
-                wordErrors++;
-            }
-            correct = false
+            correct = false;
+            endTime();
         }
     })
 
@@ -93,21 +82,20 @@ async function renderNewQuote(){
 function startTimer(){
     timerElement.innerText = 0
     startTime = new Date()
-    let time = document.getElementById("timeTaken").innerText;
+    // let time = document.getElementById("timeTaken").innerText;
     var timeInterval = setInterval(()=>{
         timerElement.innerText = getTime();
-        if(timerElement.innerText >= 60*time)
+        time=timerElement.innerText;
+        if(endTimer == 1)
         {
             document.getElementById("analysis").style.display = "block";
             document.getElementsByClassName("container")[0].style.display = "none";
             timerElement.style.display = "none";
             totalWordsTyped = totalWordsTyped + quoteInputElement.value.split(' ').length;
             console.log(totalWordsTyped);
-            document.getElementById("WPM").innerText = totalWordsTyped/time;
+            document.getElementById("WPM").innerText = ((totalWordsTyped/time)*60).toFixed(1);
             document.getElementById("wordsTyped").innerText = totalWordsTyped;
-            document.getElementById("keystrokeErrors").innerText = keystrokeErrors;
-            document.getElementById("wordErrors").innerText = wordErrors;
-            document.getElementById("accuracy").innerText =100.00 - ((wordErrors/totalWordsTyped)*100).toFixed(2);
+            document.getElementById("timeTaken").innerText = time;
             clearInterval(timeInterval);
         }
     },1000)

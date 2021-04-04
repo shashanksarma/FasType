@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/javascripts/lessonScript.js" defer></script>
+    <title>FasType</title>
+</head>
+<body>
+    <div class="container">
+        <div class="quote-display" id="quoteDisplay"></div>
+        <textarea class="quote-input" id="quoteInput" autofocus></textarea>
+    </div><br>
+    <div class="startButton" id="startButton">
+        <button onclick="renderNewQuote('x.woc,eimvurbntygha;jfkdls ')"><strong>START</strong></button>
+    </div>
+    <div id="analysis">
+        <h1 class="analhead">ANALYSIS</h1><br>
+            <table class="analcon">
+                <tr><td>Time Taken: </td><td><span id="timer">0</span>seconds</td></tr>
+                <tr><td>Keystroke Errors: </td><td><span id="keystrokeErrors">0</span></td></tr>
+                <tr><td>Right Keystrokes: </td><td><span id="rightKeystrokes">0</span></td></tr>
+                <tr><td>Accuracy: </td><td><span id="accuracy">0</span>%</td></tr>
+            </table>
+    </div>
+</body>
+</html>
