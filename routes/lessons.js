@@ -1,6 +1,10 @@
 const express = require('express')
 const router = express.Router()
 
+router.get("/" , (req,res) => {
+    res.render("lessons/LessonHome")
+})
+
 router.get("/L1" , (req,res) => {
     res.render("lessons/Lesson1")
 })

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/game.css">
+    <script src="/javascripts/gameScript.js" defer></script>
+    <title>FasType</title>
+</head>
+<body>
+    <div class="carDiv">
+        <div class="car1">
+            <img src="/images/car-1.png" id="car-1"><br>
+        </div>
+        <div class="car2">
+            <img src="/images/car-2.png" id="car-2"><br>
+        </div>       
+    </div>
+    <div class="maindiv">
+        <div class="timer" id="timer">0</div><br>
+    <div class="container">
+        <div class="quote-display" id="quoteDisplay"></div>
+        <textarea class="quote-input" id="quoteInput" autofocus></textarea>
+    </div><br>
+    <div class="startButton" id="startButton">
+        <button class="btn1" onclick="renderNewQuote()"><strong>START</strong></button>
+    </div>
+    </div>
+</body>
+</html>

@@ -20,6 +20,7 @@ initializePassport(
 const indexRouter = require('./routes/index')
 const timedRouter = require('./routes/timed')
 const lessonRouter = require('./routes/lessons')
+const gameRouter = require('./routes/game')
 // const loginRouter = require('./routes/login')
 // const registerRouter = require('./routes/register')
 
@@ -51,6 +52,7 @@ app.use(passport.session())
 app.use('/', indexRouter)
 app.use('/practice' , timedRouter)
 app.use('/lessons', lessonRouter)
+app.use('/game', gameRouter)
 // app.use('/login' , loginRouter)
 // app.use('/register' , registerRouter)
 

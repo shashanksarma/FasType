@@ -4,25 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/lesson.css">
     <script src="/javascripts/lessonScript.js" defer></script>
     <title>FasType</title>
 </head>
 <body>
-    <div class="container">
-        <div class="quote-display" id="quoteDisplay"></div>
-        <textarea class="quote-input" id="quoteInput" autofocus></textarea>
-    </div><br>
-    <div class="startButton" id="startButton">
-        <button onclick="renderNewQuote('c,eimvurbntygha;jfkdls ')"><strong>START</strong></button>
+    <div class="navbar">
+        <a href="/"><button class="btn_home">Home</button></a>&nbsp;&nbsp;&nbsp;
+        <a href=""><button class="logout">Logout</button></a>
     </div>
-    <div id="analysis">
-        <h1 class="analhead">ANALYSIS</h1><br>
-            <table class="analcon">
-                <tr><td>Time Taken: </td><td><span id="timer">0</span>seconds</td></tr>
-                <tr><td>Keystroke Errors: </td><td><span id="keystrokeErrors">0</span></td></tr>
-                <tr><td>Right Keystrokes: </td><td><span id="rightKeystrokes">0</span></td></tr>
-                <tr><td>Accuracy: </td><td><span id="accuracy">0</span>%</td></tr>
-            </table>
+    <div class="heading"><h2>Lesson &nbsp;11<h2></div>
+    <div class="main">
+        <div class="wrapper">
+            <div class="buttons">
+                <div id="startButton">
+                    <button class="but start" onclick="renderNewQuote('c,eimvurbntygh;adkfjls ')"></button>
+                </div>
+                <a href="/lessons/L10"><button class="but prev" ></button></a>
+                <a href="/lessons/L12"><button class="but next"></button></a>
+                <a href="/lessons/L11"><button class="but retry"></button></a>
+            </div>
+            <div class="container">
+                <div class="quote-display" id="quoteDisplay"></div>
+                <textarea class="quote-input" id="quoteInput" autofocus></textarea>
+            </div>
+            <div id="analysis" class="anal">
+                    <table class="analcon">
+                        <tr><td><img src="/images/timeico.png" width="40" height="40"></td><td><span id="timer">0</span> sec</td></tr>
+                        <tr><td><img src="/images/errorico.png" width="38" height="38"></td><td><span id="keystrokeErrors">0</span></td></tr>
+                        <tr><td><img src="/images/correctico.png" width="40" height="40"></td><td><span id="rightKeystrokes">0</span></td></tr>
+                        <tr><td>Accuracy</td><td><span id="accuracy">0</span> %</td></tr>
+                    </table>
+            </div>
+            <div class="keyboards">
+            </div>
+        </div>
     </div>
 </body>
 </html>

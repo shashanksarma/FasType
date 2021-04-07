@@ -1,35 +1,15 @@
-@font-face {
-  font-family: mainHeader;
-  src: url(/fonts/GentonaBold.otf);
-}
-
-@font-face {
-  font-family: contentfont;
-  src: url(/fonts/Quicksand.ttf);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    vertical-align: baseline;
-    background: transparent;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-html,body{
-	height: 100%;
-}
-
-body {
-    background:
-	linear-gradient(
-		rgba(130, 160, 220, 0.5),
-        rgba(130, 160, 220, 0.5)
-    ),url(/images/practise_wall1.jpg);
+#car-1 {
+    /* position: absolute;
+    top: 2rem;
+    left: 3rem; */
+    width: 10rem;
+} 
+ 
+#car-2 {
+    /* position: absolute;
+    top: 7rem;
+    left: 3rem; */
+    width: 10rem;
 }
 
 body, .quote-input {
@@ -38,16 +18,20 @@ body, .quote-input {
 
 .maindiv{
     display: block;
-    width:87%;
+    width:75%;
     height:98%;
+    /* float:right; */
     border-radius: 5px;
-    float:right;
-    background:
-    linear-gradient(
+    border-color: black;
+    /* background: */
+    /* linear-gradient(
       rgba(220, 220, 222, 0.75),
       rgba(220, 220, 222, 0.75)
-    ),url(/images/typing-fr.png);
+    ),url(/images/typing-fr.png); */
 	background-size:cover;
+    margin-left: 10rem;
+    padding-bottom: 5rem;
+    padding-top: 3rem;
     box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -84,7 +68,7 @@ body, .quote-input {
     background-color: transparent;
     border: 1px solid rgb(150,150,150);
     outline: none;
-    width: 100%;
+    width: 90%;
     height: 12rem;
     margin: auto;
     resize: none;
@@ -95,15 +79,6 @@ body, .quote-input {
 
 .quote-input:focus {
     border-color: black;
-}
-
-.correct {
-    color: green;
-}
-
-.incorrect {
-    color: red;
-    text-decoration: underline;
 }
 
 .startButton {
@@ -129,25 +104,29 @@ body, .quote-input {
 }
 
 
-.analysis {
-    margin: auto;
-    display: none;
-    background-color: white;
-    padding: 2rem;
-    border-radius: .5rem;
-    width: 500px;
-    max-width: 90%;
-    height: 300px;
-    max-height: 90%;
-    box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+.carDiv {
+    width: auto;
+    height: 12rem;
+    margin-top: 2rem;
 }
 
-.analhead{
-    font-family: mainHeader;
+.car1 {
+    position: absolute;
+    top: 5rem;
+    left: 10rem;
 }
 
-.analcon{
-    font-family: contentfont;
-    font-size: 1.5em;
-    font-weight: bold;
+.car2 {
+    position: absolute;
+    top: 10rem;
+    left: 10rem;
+}
+
+.correct {
+    color: green;
+}
+
+.incorrect {
+    color: red;
 }

@@ -1,6 +1,7 @@
 const quoteDisplayElement = document.getElementById('quoteDisplay')
 const quoteInputElement = document.getElementById('quoteInput')
 const timerElement = document.getElementById('timer')
+// const dot = document.getElementsByClassName('redDot');
 
 let start=0;
 let timeEnd=0;
@@ -17,6 +18,16 @@ quoteInputElement.addEventListener('keydown', (e) => {
         wrongKeystrokes++;
         document.getElementById("keystrokeErrors").innerText = wrongKeystrokes;
         e.preventDefault();
+        if(arrayQuote[inputIndex].innerText === 'f')
+        {
+            document.getElementById('r4').style.display = "inline";
+            setTimeout(function(){ document.getElementById('r4').style.display = "none"; }, 1000);
+        }
+        else if(arrayQuote[inputIndex].innerText === 'j')
+        {
+            document.getElementById('r5').style.display = "inline";
+            setTimeout(function(){ document.getElementById('r5').style.display = "none"; }, 1000);
+        }
     }
     else if(e.key === arrayQuote[inputIndex].innerText)
     {
@@ -28,7 +39,7 @@ quoteInputElement.addEventListener('keydown', (e) => {
     }
     totalKeystrokes++;
     document.getElementById("accuracy").innerText = ((rightKeystrokes/totalKeystrokes)*100).toFixed(2);
-    if(inputIndex === 150)
+    if(inputIndex === 100)
     {
         document.getElementsByClassName("container")[0].style.display = "none";
         timeEnd=1;
