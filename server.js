@@ -11,11 +11,19 @@ const bcrypt = require("bcrypt")
 const flash = require('express-flash')
 const session = require('express-session')
 const passport = require("passport")
+const User = require('./models/users')
+const Practice = require('./models/practice') // 
 const initializePassport = require('./passport-config')
 initializePassport(
     passport,
-    email => users.find(user => user.email === email),
-    id => users.find(user => user.id === id)
+    async (email) => {
+        const temp = await User.find({email: email});
+        return temp;
+    },
+    async (id) => {
+        const temp1 = await User.find({id: id});
+        return temp1;
+    }
     )
 const indexRouter = require('./routes/index')
 const timedRouter = require('./routes/timed')
@@ -29,10 +37,8 @@ const users = []  //temp
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 app.set('views', __dirname + '/views')
-// app.set('layout', 'layouts/layout')
-// app.use(expressLayouts)
 app.use(express.static('public'))
-// app.use(bodyParser.urlencoded({limit : '10mb' ,extended : false}))
+app.use(bodyParser.urlencoded({limit : '10mb' ,extended : false}))
 
 const mongoose = require('mongoose')
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
@@ -61,18 +67,23 @@ app.get('/login' , checkNotAuthenticated, (req,res) => {
 })
 
 app.get('/register' , checkNotAuthenticated, (req,res) => {
-    res.render('login/register')
+    res.render('login/register' , { user : new User() })
 })
 
 app.post('/register', checkNotAuthenticated, async (req,res) => {
     try{
         const hashedPassword = await bcrypt.hash(req.body.password, 10)
-        users.push({
+        const practice = new Practice({
+            email: req.body.email
+        })
+        const user = new User({
             id: Date.now().toString(),
             name: req.body.name,
             email: req.body.email,
             password: hashedPassword
         })
+        const newUser = await user.save();
+        const newPractice = await practice.save();
         res.redirect('/login')
     } catch {
         res.redirect('/register')
@@ -86,11 +97,38 @@ app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
     failureFlash: true
 }))
 
+app.get("/dbCheck", async (req,res) => {
+    try {
+        const practice = await Practice.find({})
+        console.log(practice)
+        res.render('dbCheck' , {practice : practice})
+    } catch {
+        res.redirect('/')
+    }
+})
+
+app.get("/analysis" , checkAuthenticated, async (req,res) => {
+    try{
+        const userData = await Practice.find({email: req.user.email});
+        console.log(userData[0]);
+        res.render("timed/analysis", {userData: userData[0]})
+    } catch {
+
+    }
+})
+
 function checkNotAuthenticated(req,res,next){
     if(req.isAuthenticated()){
         return res.redirect('/')
     }
     next()
+}
+
+function checkAuthenticated(req, res, next) {
+    if(req.isAuthenticated()) {
+        return next()
+    }
+    res.redirect('/login')
 }
 
 

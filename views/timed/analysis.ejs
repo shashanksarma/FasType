@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FasType</title>
+</head>
+<body>
+    <div class="chartContainer" style="width: 200px; height: 200px;">
+        <canvas id="myChart1" width="200" height="200"></canvas>
+    </div>
+    <h2>Your average WPM is: <span id="avgWPM"></span></h2><br>
+    <div class="chartContainer" style="width: 200px; height: 200px;">
+        <canvas id="myChart2" width="200" height="200"></canvas>
+    </div>
+    <h2>Your average Accuracy is: <span id="avgAccuracy"></span></h2><br>
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/chart.min.js" integrity="sha512-dnUg2JxjlVoXHVdSMWDYm2Y5xcIrJg1N+juOuRi0yLVkku/g26rwHwysJDAMwahaDfRpr1AxFz43ktuMPr/l1A==" crossorigin="anonymous"></script>
+<script>
+var ctx = document.getElementById('myChart1')
+var ctx2 = document.getElementById('myChart2')
+var labels = [];
+var data = [];
+var accuData = [];
+let userData=<%-JSON.stringify(userData)%>;
+console.log(userData);
+let scoreLength = userData.scores.length;
+let avgWPM=0;
+let avgAccu = 0;
+for(let i=0; i<scoreLength; i++)
+{
+    avgWPM += parseFloat(userData.scores[i].wpm);
+    avgAccu += parseFloat(userData.scores[i].accuracy);
+}
+console.log(avgWPM);
+avgWPM /= scoreLength;
+avgAccu /= scoreLength;
+
+document.getElementById('avgWPM').innerText= avgWPM;
+document.getElementById('avgAccuracy').innerText= avgAccu;
+
+if(scoreLength<10)
+{
+    for(let i=0; i<scoreLength; i++)
+    {
+        data.push(userData.scores[i].wpm);
+        accuData.push(userData.scores[i].accuracy);
+        labels.push(i+1);
+    }
+}
+else
+{
+    for(let i=scoreLength-10; i<scoreLength; i++)
+    {
+        data.push(userData.scores[i].wpm);
+        accuData.push(userData.scores[i].accuracy);
+        labels.push(i-scoreLength+11);
+    }
+}
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'WPM',
+            data: data,
+            backgroundColor: [
+                'rgba(54, 162, 235, 0.2)',
+            ],
+            borderColor: [
+                'rgba(54, 162, 235, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+var myChart2 = new Chart(ctx2, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Accuracy',
+            data: accuData,
+            backgroundColor: [
+                'rgba(54, 162, 235, 0.2)',
+            ],
+            borderColor: [
+                'rgba(54, 162, 235, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+
+</html>
