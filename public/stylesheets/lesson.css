@@ -180,6 +180,18 @@ font-family: contentfont;
 color: rgb(185,190,202);
 }
 
+.tabled{
+    display:block;
+    position:absolute;
+    top:13.1rem;
+    left:67rem;
+    width:7rem;
+    border-bottom: 0.3rem solid rgb(120,14,54);
+    border-top: 0.3rem solid rgb(120,14,54);
+    border-radius: 0.5rem;
+    background-color: rgb(247,213,223);
+}
+
 .btn_home{
 width: 90px;
 height: 45px;

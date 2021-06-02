@@ -111,14 +111,16 @@ function startTimer(){
             // console.log('hihihi')
             const wpm = document.getElementById("WPM").innerText
             const accuracy = document.getElementById("accuracy").innerText
-            if(time===1)
+            console.log(typeof(time));
+            if(time==='1')
             {
+                console.log("hello");
                 $.post('/practice/timed1', { wpm: wpm, accuracy: accuracy });
             }
-            else if(time===2) {
+            else if(time==='2') {
                 $.post('/practice/timed2', { wpm: wpm, accuracy: accuracy });
             }
-            else if(time===5)
+            else if(time==='5')
             {
                 $.post('/practice/timed5', { wpm: wpm, accuracy: accuracy });
             }

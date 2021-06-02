@@ -12,7 +12,9 @@ const flash = require('express-flash')
 const session = require('express-session')
 const passport = require("passport")
 const User = require('./models/users')
-const Practice = require('./models/practice') // 
+const Practice = require('./models/practice') 
+const Game1 = require('./models/game1')
+const Game2 = require('./models/game2')
 const initializePassport = require('./passport-config')
 initializePassport(
     passport,
@@ -76,6 +78,13 @@ app.post('/register', checkNotAuthenticated, async (req,res) => {
         const practice = new Practice({
             email: req.body.email
         })
+        const game1 = new Game1({
+            email: req.body.email,
+            highscore: 0
+        }) 
+        const game2 = new Game2({
+            email: req.body.email
+        }) 
         const user = new User({
             id: Date.now().toString(),
             name: req.body.name,
@@ -84,6 +93,8 @@ app.post('/register', checkNotAuthenticated, async (req,res) => {
         })
         const newUser = await user.save();
         const newPractice = await practice.save();
+        const newGame1 = await game1.save();
+        const newGame2 = await game2.save();
         res.redirect('/login')
     } catch {
         res.redirect('/register')

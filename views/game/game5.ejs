@@ -9,23 +9,29 @@
     <title>FasType</title>
 </head>
 <body>
-    <div class="carDiv">
-        <div class="car1">
-            <img src="/images/car-1.png" id="car-1"><br>
-        </div>
-        <div class="car2">
-            <img src="/images/car-2.png" id="car-2"><br>
-        </div>       
+    <div class="car1">
+        <img src="/images/car-1.png" id="car-1">
     </div>
-    <div class="maindiv">
-        <div class="timer" id="timer">0</div><br>
+    <div class="car2">
+        <img src="/images/car-2.png" id="car-2">
+    </div>
+    <div class="carDiv">
+        <div class="track">
+            <hr>
+        </div>
+        <div class="feedbacks">
+            <span id="speed1">0</span> wpm
+            <br><br><br><span id="speed2">45</span> wpm
+        </div>
+    </div>
+    <div class="timer" id="timer">0</div>
     <div class="container">
         <div class="quote-display" id="quoteDisplay"></div>
         <textarea class="quote-input" id="quoteInput" autofocus></textarea>
     </div><br>
     <div class="startButton" id="startButton">
-        <button class="btn1" onclick="renderNewQuote()"><strong>START</strong></button>
+        <button class="btn1" onclick="renderNewQuote()"><strong>START &#8594;</strong></button>
     </div>
-    </div>
+
 </body>
 </html>

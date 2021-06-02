@@ -117,6 +117,9 @@ function startTimer(){
             document.getElementById("keystrokeErrors").innerText = keystrokeErrors;
             document.getElementById("wordErrors").innerText = wordErrors;
             document.getElementById("accuracy").innerText =100.00 - ((wordErrors/totalWordsTyped)*100).toFixed(2);
+            const wpm = document.getElementById("WPM").innerText
+            const accuracy = document.getElementById("accuracy").innerText
+            $.post('/practice/endless', { wpm: wpm, accuracy: accuracy });
             clearInterval(timeInterval);
         }
     },1000)

@@ -21,7 +21,7 @@ quoteInputElement.addEventListener( 'keydown' , (e) => {
     }
     if(e.key === ' ' && (quoteInputElement.value.length === spaceIndex[correctWords+1]) && tillNowCorrect===1)
     {
-        var temp = ((65/words)*(correctWords+1));
+        var temp = ((55/words)*(correctWords+1));
         temp += 10;
         var tempstr = temp.toFixed(2);
         tempstr = tempstr + "rem";
@@ -69,7 +69,7 @@ quoteInputElement.addEventListener( "input" , () => {
     if(correct)
     {
         end=1;
-        document.getElementsByClassName("car1")[0].style.left = "75rem";
+        document.getElementsByClassName("car1")[0].style.left = "65rem";
     }
 })
     
@@ -99,8 +99,9 @@ async function renderNewQuote(){
 
 function startTimer(){
     timerElement.innerText=0;
+    let cpuWPM = document.getElementById('speed2').innerText;
     startTime = new Date();
-    var temp1 = ((65/(3*words)));
+    var temp1 = ((55*cpuWPM)/(60*words));
     var index=1;
     var timeInterval = setInterval(()=>{
         timerElement.innerText = getTime();
@@ -110,10 +111,13 @@ function startTimer(){
         tempstr1 = tempstr1 + "rem";
         console.log(tempstr1);
         document.getElementsByClassName("car2")[0].style.left = tempstr1;
-        temp1 = ((65/(3*words)));
+        temp1 = ((55*cpuWPM)/(60*words));
         index++;
-        if(end === 1 || getTime() === 150)
+        if(end === 1 || getTime() === 3000/cpuWPM)
         {
+            let timeDone = getTime();
+            timeDone /=60;
+            document.getElementById('speed1').innerText = (correctWords/timeDone).toFixed(0);
             clearInterval(timeInterval);
         }
     }, 1000)

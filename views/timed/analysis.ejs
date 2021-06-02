@@ -1,20 +1,42 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FasType</title>
+    <link rel="stylesheet" href="stylesheets/anal.css">
 </head>
 <body>
-    <div class="chartContainer" style="width: 200px; height: 200px;">
-        <canvas id="myChart1" width="200" height="200"></canvas>
+    <div class="navbar">
+        <a href="/"><button class="btn_home">Home</button></a>&nbsp;&nbsp;&nbsp;
+        <a href=""><button class="logout">Logout</button></a>
     </div>
-    <h2>Your average WPM is: <span id="avgWPM"></span></h2><br>
-    <div class="chartContainer" style="width: 200px; height: 200px;">
-        <canvas id="myChart2" width="200" height="200"></canvas>
+    <div class="heading"><h2>ANALYSIS</h2><br>
+        <h4>We provide you with all of your performance history so you can keep track of your progress.<br>
+        Keep an eye out on improving your accuracy and maintaining an average of more than 96% !</h4>
     </div>
-    <h2>Your average Accuracy is: <span id="avgAccuracy"></span></h2><br>
+    <div class="main">
+        <div class="left">
+            <div class="sped">
+            </div>
+            <div class="wrapper">
+                <div class="chartContainer" style="width: 200px; height: 200px;">
+                    <canvas id="myChart1" width="200" height="200"></canvas>
+                </div>
+                <h1><br><br>Average WPM : <span id="avgWPM"></span></h1>
+            </div>
+        </div>
+        <div class="right">
+            <div class="acu">
+            </div>
+            <div class="wrapper">
+                <div class="chartContainer" style="width: 200px; height: 200px;">
+                    <canvas id="myChart2" width="200" height="200"></canvas>
+                </div>
+                <h1><br><br>Average Accuracy : <span id="avgAccuracy"></span></h1><br>
+            </div>
+        </div>
+    </div>
 
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/chart.min.js" integrity="sha512-dnUg2JxjlVoXHVdSMWDYm2Y5xcIrJg1N+juOuRi0yLVkku/g26rwHwysJDAMwahaDfRpr1AxFz43ktuMPr/l1A==" crossorigin="anonymous"></script>
@@ -37,10 +59,8 @@ for(let i=0; i<scoreLength; i++)
 console.log(avgWPM);
 avgWPM /= scoreLength;
 avgAccu /= scoreLength;
-
-document.getElementById('avgWPM').innerText= avgWPM;
-document.getElementById('avgAccuracy').innerText= avgAccu;
-
+document.getElementById('avgWPM').innerText= avgWPM.toFixed(2);
+document.getElementById('avgAccuracy').innerText= avgAccu.toFixed(2);
 if(scoreLength<10)
 {
     for(let i=0; i<scoreLength; i++)
@@ -83,7 +103,6 @@ var myChart = new Chart(ctx, {
         }
     }
 });
-
 var myChart2 = new Chart(ctx2, {
     type: 'bar',
     data: {

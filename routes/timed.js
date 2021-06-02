@@ -80,6 +80,23 @@ router.get('/endless' , checkAuthenticated, (req,res) => {
     res.render('timed/endless')
 })
 
+router.post('/endless', checkAuthenticated, async (req,res) => {
+    try {
+        console.log(req.body.wpm);
+        const practice =await Practice.updateOne({email: req.user.email}, {
+            $push: {
+                scores: {
+                    "wpm": req.body.wpm,
+                    "accuracy": req.body.accuracy
+                }
+            }
+        });
+        console.log(practice);
+    } catch {
+        res.redirect('/');
+    }
+})
+
 router.get('/instaDeath' , checkAuthenticated, (req,res) => {
     res.render('timed/instaDeath')
 })

@@ -9,6 +9,7 @@ let inputIndex=0;
 let wrongKeystrokes=0;
 let rightKeystrokes=0;
 let totalKeystrokes=0;
+var errorMap = new Uint8Array(300);
 
 quoteInputElement.addEventListener('keydown', (e) => {
     const arrayQuote = quoteDisplayElement.querySelectorAll('span');
@@ -20,11 +21,15 @@ quoteInputElement.addEventListener('keydown', (e) => {
         e.preventDefault();
         if(arrayQuote[inputIndex].innerText === 'f')
         {
+            errorMap[5]++;
+            document.getElementById('fWrong').innerText = errorMap[5];
             document.getElementById('r4').style.display = "inline";
             setTimeout(function(){ document.getElementById('r4').style.display = "none"; }, 1000);
         }
         else if(arrayQuote[inputIndex].innerText === 'j')
         {
+            errorMap[6]++;
+            document.getElementById('jWrong').innerText = errorMap[6];
             document.getElementById('r5').style.display = "inline";
             setTimeout(function(){ document.getElementById('r5').style.display = "none"; }, 1000);
         }
@@ -42,6 +47,7 @@ quoteInputElement.addEventListener('keydown', (e) => {
     if(inputIndex === 100)
     {
         document.getElementsByClassName("container")[0].style.display = "none";
+        document.getElementsByClassName('tabled')[0].style.left = "42rem";
         timeEnd=1;
     }
 })

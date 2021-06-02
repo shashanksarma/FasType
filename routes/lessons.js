@@ -1,8 +1,20 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const router = express.Router()
+const User = require('../models/users')
+const Practice = require('../models/practice')
 
-router.get("/" , (req,res) => {
-    res.render("lessons/LessonHome")
+router.use(bodyParser.urlencoded({limit : '10mb' ,extended : false}))
+
+function checkAuthenticated(req, res, next) {
+    if(req.isAuthenticated()) {
+        return next()
+    }
+    res.redirect('/login')
+}
+
+router.get("/" ,checkAuthenticated, (req,res) => {
+    res.render("lessons/LessonHome" , {user: req.user.name})
 })
 
 router.get("/L1" , (req,res) => {
